@@ -32,7 +32,7 @@ const FileUpload = ({ sendPredictedDataToParent }) => {
       // setChurnRate(response.data.churn_rate); // assuming the response contains the churn rate
     } catch (error) {
       console.error("Error uploading file:", error);
-      setError(error.message);
+      setError(error.response.data.message || error.message);
     }
   };
 
