@@ -39,15 +39,19 @@ export async function loginUser(req, res) {
 
     const loggedInUser = await User.findById(user._id).select("-password");
 
-    res
-      .status(200)
-      .cookie("accessToken", accessToken, COOKIE_OPTIONS)
-      .json({
-        message: "User logged in successfully!",
-        user: loggedInUser,
-        accessToken,
-      });
+    res.status(200).cookie("accessToken", accessToken, COOKIE_OPTIONS).json({
+      message: "User logged in successfully!",
+      user: loggedInUser,
+      accessToken,
+    });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
+}
+
+export async function logoutUser(_, res) {
+  return res
+    .status(200)
+    .clearCookie("accessToken")
+    .json({ message: "User logged out" });
 }
