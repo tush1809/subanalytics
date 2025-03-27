@@ -1,7 +1,55 @@
 .header-wrapper {
-    width: 100vw;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
+    padding: 12px 24px;
     background-color: #22222d;
-}
+    color: white;
+  }
+  
+  .logo-title {
+    margin: 0;
+    font-size: 24px;
+  }
+  
+  .logo-link {
+    text-decoration: none;
+    color: white;
+  }
+  
+  .logo-link:hover {
+    color: #00bfff;
+  }
+  
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  
+  .nav-link {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.2s ease;
+  }
+  
+  .nav-link:hover {
+    color: #00bfff;
+  }
+  
+  .logout-button {
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 8px 14px;
+    cursor: pointer;
+    font-size: 14px;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+  }
+  
+  .logout-button:hover {
+    background-color: #cc0000;
+  }
+  

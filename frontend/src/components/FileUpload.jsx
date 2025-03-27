@@ -39,7 +39,7 @@ const FileUpload = ({ sendPredictedDataToParent }) => {
   return (
     <>
       <div className="file-upload-container">
-        <p>Upload Excel File:</p>
+        <p>Upload File :</p>
         <input
           type="file"
           accept=".xlsx, .xls, .csv"
