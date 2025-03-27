@@ -22,4 +22,4 @@ UserSchema.methods.generateAccessToken = function() {
   )
 }
 
-export default model("User", UserSchema);
+export const User = model("User", UserSchema);
