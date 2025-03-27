@@ -18,7 +18,7 @@ export const uploadFileAndPredict = async (req, res) => {
 
     // Make request to Flask API
     const flaskResponse = await axios.post(
-      "http://127.0.0.1:5001/api/predict/upload",
+      "http://127.0.0.1:5001/api/predict",
       formData,
       {
         headers: formData.getHeaders(),
