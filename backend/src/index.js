@@ -6,11 +6,14 @@ dotenv.config({
 import express, { json } from "express";
 import { connect } from "mongoose";
 import cors from "cors";
+import cookieParser from "cookie-parser";
+
 import { DB_NAME } from "./constants.js";
 
 const app = express();
 app.use(json());
 app.use(cors());
+app.use(cookieParser())
 
 // Import routes
 import authRoutes from "./routes/auth.route.js";
