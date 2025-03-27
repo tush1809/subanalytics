@@ -5,9 +5,6 @@ export const verifyUser = async (req, res, next) => {
   // Retrieve the token from the cookie
   const token = req.cookies?.accessToken;
 
-  console.log(req.cookies);
-  
-
   // If no token, return an error
   if (!token) {
     return res.status(401).json({ message: "Unauthorized request" });
