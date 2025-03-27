@@ -1,6 +1,6 @@
-import User from "../models/user.model.js";
+import { User } from "../models/user.model.js";
 import { hash, compare } from "bcrypt";
-import jwt from "jsonwebtoken";
+import { COOKIE_OPTIONS } from "../constants.js";
 
 export async function registerUser(req, res) {
   const { firstname, lastname, email, password } = req.body;
@@ -35,16 +35,17 @@ export async function loginUser(req, res) {
     if (!isPasswordCorrect)
       return res.status(400).json({ message: "Invalid login credentials" });
 
-    const token = user.generateAccessToken();
+    const accessToken = user.generateAccessToken();
 
     const loggedInUser = await User.findById(user._id).select("-password");
 
     res
       .status(200)
+      .cookie("accessToken", accessToken, COOKIE_OPTIONS)
       .json({
         message: "User logged in successfully!",
         user: loggedInUser,
-        token,
+        accessToken,
       });
   } catch (err) {
     res.status(500).json({ error: err.message });
