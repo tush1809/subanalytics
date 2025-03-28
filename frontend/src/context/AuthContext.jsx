@@ -42,12 +42,14 @@ export const AuthContextProvider = ({ children }) => {
   useEffect(() => {
     const loadUser = async () => {
       try {
-        const response = await axios.get(`${API_URL}/api/get-user`, {
+        const response = await axios.get(`${API_URL}/api/auth/get-user`, {
           withCredentials: true,
         });
 
         // if user exists, then save in context
-        dispatch({ type: actions.LOGIN, payload: response.data.data.user });
+        console.log(response.data.user);
+        
+        dispatch({ type: actions.LOGIN, payload: response.data.user });
 
         if (location.pathname === "/login") {
           navigate("/dashboard"); // redirect to home page after login

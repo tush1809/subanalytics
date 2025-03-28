@@ -1,33 +1,38 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useNavigate, Link } from "react-router-dom";
 import "./header.css";
+import { useAuthContext } from "../hooks/useAuthContext.js";
+import { useLogout } from "../hooks/useLogout.js";
 
 const Header = () => {
   const navigate = useNavigate();
-  const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem("isLoggedIn"));
 
-  useEffect(() => {
-    setIsLoggedIn(localStorage.getItem("isLoggedIn"));
-  }, []);
+  const { user } = useAuthContext();
+  const { logout } = useLogout();
 
   const handleLogout = () => {
-    localStorage.removeItem("isLoggedIn");
-    setIsLoggedIn(null); 
-    navigate("/login");
+    console.log("logging out...");
+    logout();
   };
 
   return (
     <div className="header-wrapper">
       <h1 className="logo-title">
-        <Link to="/" className="logo-link">SubAnalytics</Link>
+        <Link to="/" className="logo-link">
+          SubAnalytics
+        </Link>
       </h1>
       <div className="nav-links">
-        {isLoggedIn ? (
+        {user && (
           <>
-            <Link to="/dashboard" className="nav-link">Dashboard</Link>
-            <button onClick={handleLogout} className="logout-button">Logout</button>
+            <Link to="/dashboard" className="nav-link">
+              Dashboard
+            </Link>
+            <button onClick={handleLogout} className="logout-button">
+              Logout
+            </button>
           </>
-        ) : null}
+        )}
       </div>
     </div>
   );
