@@ -5,7 +5,6 @@ import './atRisk.css'; // Import the CSS file
 const AtRiskCustomersList = ({ atRiskCustomers }) => {
   return (
     <div className="at-risk-customers-list">
-      {/* <h2 className="list-title">Top 5 Customers At Risk of Churning</h2> */}
       {atRiskCustomers && atRiskCustomers.length > 0 ? (
         <ul className="customers-list">
           {atRiskCustomers.map((customer, index) => (
@@ -13,12 +12,12 @@ const AtRiskCustomersList = ({ atRiskCustomers }) => {
               <div>
                 <h3 className="customer-name">Customer ID: {customer.customer_id}</h3>
                 <p className="churn-probability">
-                  Churn Probability: {customer.Prediction_Probability * 100}%
+                  Churn Probability: {(customer.Prediction_Probability * 100).toFixed(2)}%
                 </p>
               </div>
               <span
                 className={`risk-level ${
-                  customer.prediction_probability > 0.7 ? "high-risk" : "medium-risk"
+                  customer.Prediction_Probability > 0.7 ? "high-risk" : "medium-risk"
                 }`}
               >
                 {customer.Prediction_Probability > 0.7 ? "High Risk" : "Medium Risk"}

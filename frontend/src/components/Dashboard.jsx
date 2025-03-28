@@ -11,13 +11,12 @@ const Dashboard = ({ analyticsData, insightData }) => {
 
   return (
     <>
-      <p className="dashboard-title">Your Dashboard</p>
-      <div className="overview-container">
-        <h3>Overview</h3>
-        <p>AI-generated</p>
-        <p>{insightData.overview}</p>
-      </div>
       <div className="dashboard">
+        <div className="overview-container">
+          <h3>Overview</h3>
+          <p className="subtext">AI-generated</p>
+          <p>{insightData.overview}</p>
+        </div>
         {churnRate && (
           <div className="dashboard-card">
             <h3>Churn Rate</h3>
@@ -25,9 +24,25 @@ const Dashboard = ({ analyticsData, insightData }) => {
           </div>
         )}
 
+        {insightData.business_recommendations && (
+          <div className="recommendation-card">
+            <div>
+              <h3>Business Recommendations</h3>
+              <p className="subtext">AI-generated</p>
+            </div>
+            <div>
+              {insightData.business_recommendations.map((line, index) => (
+                <p key={index} className="bullet-point">
+                  {line}
+                </p>
+              ))}
+            </div>
+          </div>
+        )}
+
         {atRiskCustomers && (
           <div className="dashboard-card">
-            <h3>Top 3 customers at high risk of churning</h3>
+            <h3>Top 3 customers at risk of churning</h3>
             <AtRiskCustomersList atRiskCustomers={atRiskCustomers} />
           </div>
         )}
@@ -38,14 +53,6 @@ const Dashboard = ({ analyticsData, insightData }) => {
             <PlanDistributionChart planDistribution={planDistribution} />
           </div>
         )}
-
-        {insightData &&
-          Object.entries(insightData).map(([key, value]) => (
-            <div className="dashboard-card" key={key}>
-              <h3>{key.replace(/_/g, " ")}</h3>
-              <p>{value}</p>
-            </div>
-          ))}
       </div>
     </>
   );

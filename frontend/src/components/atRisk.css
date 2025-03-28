@@ -1,54 +1,69 @@
 /* src/components/AtRiskCustomersList.css */
 .at-risk-customers-list {
-    font-family: Arial, sans-serif;
-    margin-top: 20px;
-    width: 100%;
-  }
-  
-  /* .list-title {
-    font-size: 1.5em;
-    font-weight: bold;
-    margin-bottom: 15px;
-    color: #333;
-    } */
-    
-    .customers-list {
-      list-style-type: none;
-      padding: 0;
-      width: 450px;
-  }
-  
-  .customer-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 8px 24px;
-    margin-bottom: 16px;
-    /* border: 1px solid #ddd; */
-    border-radius: 8px;
-    background-color: #f4f4f4;
-  }
-  
-  .customer-name {
-    font-size: 1.1em;
-    font-weight: bold;
-    text-align: left;
-  }
-  
-  .churn-probability {
-    color: #0a0a0a;
-  }
-  
-  .risk-level {
-    font-size: 0.9em;
-    font-weight: bold;
-  }
-  
-  .high-risk {
-    color: red;
-  }
-  
-  .medium-risk {
-    color: rgb(5, 5, 4);
-  }
-  
+  font-family: 'Arial', sans-serif;
+  margin-top: 20px;
+  width: 100%;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.customers-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.customer-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 20px;
+  margin-bottom: 16px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.customer-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.customer-name {
+  font-size: 1em;
+  font-weight: bold;
+  text-align: left;
+  color: #333;
+}
+
+.churn-probability {
+  color: #555;
+  font-size: 1em;
+  text-align: left;
+}
+
+.risk-level {
+  font-size: 0.9em;
+  font-weight: bold;
+  padding: 4px 8px;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+
+.high-risk {
+  color: #fff;
+  background-color: #e63946;
+}
+
+.medium-risk {
+  color: #fff;
+  background-color: #f4a261;
+}
+
+.low-risk {
+  color: #fff;
+  background-color: #2a9d8f;
+}
