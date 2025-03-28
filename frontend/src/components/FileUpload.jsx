@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import axios from "axios";
-import ChurnRateChart from "./ChurnRateChart";
 import "./fileUpload.css";
 
 const FileUpload = ({ sendPredictedDataToParent }) => {
@@ -18,7 +17,7 @@ const FileUpload = ({ sendPredictedDataToParent }) => {
 
     try {
       const response = await axios.post(
-        "http://localhost:8000/api/predict/upload",
+        "http://localhost:8000/api/predict",
         formData,
         {
           headers: {
