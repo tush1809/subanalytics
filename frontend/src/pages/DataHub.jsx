@@ -33,7 +33,7 @@ const DataHub = () => {
     getHistory();
   }, [location.pathname]);
 
-  console.log(history);
+//   console.log(history);
 
   return (
     <>

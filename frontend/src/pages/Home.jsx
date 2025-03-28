@@ -27,7 +27,7 @@ const Home = () => {
           withCredentials: true,
         });
 
-        console.log(response);
+        // console.log(response);
 
         // update local state
         setAnalyticsData(response.data.prediction.predictionResult);
