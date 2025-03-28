@@ -2,7 +2,7 @@ import { User } from "../models/user.model.js";
 import { hash, compare } from "bcrypt";
 import { COOKIE_OPTIONS } from "../constants.js";
 
-export async function registerUser(req, res) {
+export const registerUser = async (req, res) => {
   const { firstname, lastname, email, password } = req.body;
 
   if (
@@ -35,7 +35,7 @@ export async function registerUser(req, res) {
   }
 }
 
-export async function loginUser(req, res) {
+export const loginUser = async(req, res) => {
   const { email, password } = req.body;
 
   if (!email) return res.status(400).json({ message: "Email is required" });
@@ -65,9 +65,20 @@ export async function loginUser(req, res) {
   }
 }
 
-export async function logoutUser(_, res) {
+export const logoutUser = async (_, res) => {
   return res
     .status(200)
     .clearCookie("accessToken")
     .json({ message: "User logged out" });
+}
+
+export const getUser = async (req, res) => {
+  const loggedInUser = req?.user;
+
+  if (!loggedInUser)
+    return res.status(404).json({ message: "User not found" })
+
+  return res
+    .status(200)
+    .json({ message: "User found!", user: loggedInUser})
 }
