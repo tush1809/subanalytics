@@ -32,7 +32,10 @@ const Signup = () => {
 
       <div className="signup-container">
         <div className="signup-box">
-          <h2>Sign Up</h2>
+          <h2>Welcome to SubAnalytics!</h2>
+          <p className="greeting-text">
+            We're excited to have you join us. Create your account to get started!
+          </p>
           <form>
             <input
               type="text"
@@ -87,7 +90,6 @@ const Signup = () => {
               Login here
             </Link>
           </p>
-          
         </div>
       </div>
     </div>

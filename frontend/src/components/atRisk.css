@@ -10,13 +10,12 @@
     font-weight: bold;
     margin-bottom: 15px;
     color: #333;
-  } */
-  
-  .customers-list {
-    list-style-type: none;
-    padding: 0;
-    width: 480px;
-    /* border: 1px solid red; */
+    } */
+    
+    .customers-list {
+      list-style-type: none;
+      padding: 0;
+      width: 450px;
   }
   
   .customer-item {
@@ -24,10 +23,10 @@
     justify-content: space-between;
     align-items: center;
     padding: 8px 24px;
-    margin-bottom: 6px;
+    margin-bottom: 16px;
     /* border: 1px solid #ddd; */
     border-radius: 8px;
-    background-color: #cacace;
+    background-color: #f4f4f4;
   }
   
   .customer-name {

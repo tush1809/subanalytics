@@ -25,7 +25,10 @@ const Login = () => {
 
       <div className="login-container">
         <div className="login-box">
-          <h2>Login</h2>
+          <h1>Welcome Back!</h1>
+          <p className="welcome-text">
+            We're excited to see you again. Log in to access your account and continue where you left off.
+          </p>
           <form>
             <input
               type="email"
@@ -50,19 +53,18 @@ const Login = () => {
               className="login-button"
               onClick={handleSubmit}
               disabled={isLoading}>
-              Login
+              {isLoading ? "Logging in..." : "Login"}
             </button>
 
             {error && <div className="error">{error}</div>}
           </form>
 
           <p className="signup-text">
-            Don't have an account?{" "}
+            New here?{" "}
             <Link to="/signup" className="signup-link">
-              Sign up here
-            </Link>
+              Create an account
+            </Link> and join us today!
           </p>
-
         </div>
       </div>
     </div>
