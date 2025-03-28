@@ -6,6 +6,7 @@ import Signup from "./pages/Signup";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import { AuthContextProvider } from "./context/AuthContext";
+import DataHub from "./pages/DataHub";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Navigate to="/dashboard" />} />
           <Route path="/dashboard" element={<Home />} />
+          <Route path="/datahub" element={<DataHub />} />
           <Route path="/login" element={<Login />} />
           <Route path="/Signup" element={<Signup />} />
         </Routes>

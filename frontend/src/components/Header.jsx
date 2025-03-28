@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./header.css";
 import { useAuthContext } from "../hooks/useAuthContext.js";
 import { useLogout } from "../hooks/useLogout.js";
@@ -25,6 +25,9 @@ const Header = () => {
           <>
             <Link to="/dashboard" className="nav-link">
               Dashboard
+            </Link>
+            <Link to="/datahub" className="nav-link">
+              Data Hub
             </Link>
             <button onClick={handleLogout} className="logout-button">
               Logout
