@@ -1,42 +1,93 @@
-import React, { useEffect } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import Header from "../components/Header";
 import "./Signup.css";
-import MarqueeText from "../components/MarequeText";
+import { useSignup } from "../hooks/useSignup";
 
 const Signup = () => {
-  const navigate = useNavigate();
+  const [firstname, setFirstname] = useState("");
+  const [lastname, setLastname] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-  useEffect(() => {
-    if (localStorage.getItem("isLoggedIn")) {
-      navigate("/dashboard");
-    }
-  }, [navigate]);
+  const { signup, isLoading, error } = useSignup();
 
-  const handleSignup = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    localStorage.setItem("isLoggedIn", "true"); 
-    window.dispatchEvent(new Event("storage")); 
-    navigate("/dashboard");
+    try {
+      await signup({
+        firstname,
+        lastname,
+        email,
+        password,
+      });
+    } catch (error) {
+      console.log("Signup failed: ", error);
+    }
   };
 
   return (
     <div>
       <Header />
+
       <div className="signup-container">
-        <MarqueeText/>
         <div className="signup-box">
           <h2>Sign Up</h2>
-          <form onSubmit={handleSignup}>
-            <input type="text" placeholder="First Name" className="input-field" required />
-            <input type="text" placeholder="Last Name" className="input-field" required />
-            <input type="email" placeholder="Email" className="input-field" required />
-            <input type="password" placeholder="Create Password" className="input-field" required />
-            <button type="submit" className="signup-button">Sign Up</button>
+          <form>
+            <input
+              type="text"
+              placeholder="First Name"
+              className="input-field"
+              name="firstname"
+              onChange={(e) => setFirstname(e.target.value)}
+              value={firstname}
+              required
+            />
+            <input
+              type="text"
+              placeholder="Last Name"
+              className="input-field"
+              name="lastname"
+              onChange={(e) => setLastname(e.target.value)}
+              value={lastname}
+              required
+            />
+            <input
+              type="email"
+              placeholder="Email"
+              className="input-field"
+              name="email"
+              onChange={(e) => setEmail(e.target.value)}
+              value={email}
+              required
+            />
+            <input
+              type="password"
+              placeholder="Create Password"
+              className="input-field"
+              name="password"
+              onChange={(e) => setPassword(e.target.value)}
+              value={password}
+              required
+            />
+            <button
+              type="submit"
+              className="signup-button"
+              onClick={handleSubmit}
+              disabled={isLoading}>
+              Sign Up
+            </button>
+
+            {error && <div className="error">{error}</div>}
           </form>
+
           <p className="login-text">
-            Already have an account? <Link to="/login" className="login-link">Login here</Link>
+            Already have an account?{" "}
+            <Link to="/login" className="login-link">
+              Login here
+            </Link>
           </p>
+          
         </div>
       </div>
     </div>

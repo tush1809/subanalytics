@@ -11,8 +11,19 @@ import cookieParser from "cookie-parser";
 import { DB_NAME } from "./constants.js";
 
 const app = express();
+
+console.log(process.env.CORS_ORIGIN);
+
+// Configure CORS to allow requests from frontend origin and enable credentials
+const corsOptions = {
+  origin: process.env.CORS_ORIGIN,
+  methods: ["GET", "POST", "PUT", "DELETE"], // Allowed HTTP methods
+  credentials: true, // Allow credentials (cookies, authorization)
+  allowedHeaders: ["Content-Type", "Authorization"], // Allowed headers
+};
+app.use(cors(corsOptions));
+
 app.use(json());
-app.use(cors());
 app.use(cookieParser())
 
 // Import routes

@@ -4,7 +4,7 @@ import { verifyUser } from "../middleware/auth.middleware.js";
 const router = Router();
 
 router.post("/register", registerUser);
-router.get("/login", loginUser);
+router.post("/login", loginUser);
 
 // Protected Routes
 router.get("/logout", verifyUser, logoutUser);
