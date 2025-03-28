@@ -2,16 +2,22 @@ import React, { useState } from "react";
 import axios from "axios";
 import "./fileUpload.css";
 
-const FileUpload = ({ sendPredictedDataToParent }) => {
+const FileUpload = () => {
   const [file, setFile] = useState(null);
   const [error, setError] = useState(null);
+  const [success, setSuccess] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const handleFileChange = (e) => {
     setFile(e.target.files[0]);
     setError(null);
+    setSuccess(null);
   };
 
   const handleFileUpload = async () => {
+    setLoading(true);
+    setSuccess(null);
+
     const formData = new FormData();
     formData.append("file", file);
 
@@ -23,15 +29,15 @@ const FileUpload = ({ sendPredictedDataToParent }) => {
           headers: {
             "Content-Type": "multipart/form-data",
           },
+          withCredentials: true,
         }
       );
-      // console.log(response);
-      sendPredictedDataToParent(response);
-
-      // setChurnRate(response.data.churn_rate); // assuming the response contains the churn rate
+      setSuccess("File uploaded and analyzed successfully!");
     } catch (error) {
       console.error("Error uploading file:", error);
-      setError(error.response.data.message || error.message);
+      setError(error.response?.data?.message || error.message);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -46,9 +52,12 @@ const FileUpload = ({ sendPredictedDataToParent }) => {
           required
         />
 
-        <button onClick={handleFileUpload}>Analyze</button>
+        <button onClick={handleFileUpload}>
+          {loading ? "Analyzing..." : "Analyze"}
+        </button>
       </div>
       {error && <div className="error">{error}</div>}
+      {success && <div className="success">{success}</div>}
     </>
   );
 };

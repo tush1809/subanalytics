@@ -8,31 +8,46 @@ const Dashboard = ({ analyticsData, insightData }) => {
   const churnRate = analyticsData.churn_rate;
   const atRiskCustomers = analyticsData.top_3_customers_at_risk;
   const planDistribution = analyticsData.subscription_plan_distribution;
-  
+
   return (
-    <div className="dashboard">
-      {churnRate && (
-        <div className="dashboard-card">
-          <h3>Churn Rate</h3>
-          <ChurnRateChart churnRate={churnRate} />
-        </div>
-      )}
+    <>
+      <p className="dashboard-title">Your Dashboard</p>
+      <div className="overview-container">
+        <h3>Overview</h3>
+        <p>AI-generated</p>
+        <p>{insightData.overview}</p>
+      </div>
+      <div className="dashboard">
+        {churnRate && (
+          <div className="dashboard-card">
+            <h3>Churn Rate</h3>
+            <ChurnRateChart churnRate={churnRate} />
+          </div>
+        )}
 
-      {atRiskCustomers && (
-        <div className="dashboard-card">
-          <h3>Top 3 customers at high risk of churning</h3>
-          <AtRiskCustomersList atRiskCustomers={atRiskCustomers} />
-        </div>
-      )}
+        {atRiskCustomers && (
+          <div className="dashboard-card">
+            <h3>Top 3 customers at high risk of churning</h3>
+            <AtRiskCustomersList atRiskCustomers={atRiskCustomers} />
+          </div>
+        )}
 
-      {planDistribution && (
-        <div className="dashboard-card">
-          <h3>Subscription Plans Distribution</h3>
-          <PlanDistributionChart planDistribution={planDistribution} />
-        </div>
-      )}
+        {planDistribution && (
+          <div className="dashboard-card">
+            <h3>Subscription Plans Distribution</h3>
+            <PlanDistributionChart planDistribution={planDistribution} />
+          </div>
+        )}
 
-    </div>
+        {insightData &&
+          Object.entries(insightData).map(([key, value]) => (
+            <div className="dashboard-card" key={key}>
+              <h3>{key.replace(/_/g, " ")}</h3>
+              <p>{value}</p>
+            </div>
+          ))}
+      </div>
+    </>
   );
 };
 
