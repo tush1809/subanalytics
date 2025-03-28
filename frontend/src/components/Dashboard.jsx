@@ -12,11 +12,40 @@ const Dashboard = ({ analyticsData, insightData }) => {
   return (
     <>
       <div className="dashboard">
-        <div className="overview-container">
-          <h3>Overview</h3>
-          <p className="subtext">AI-generated</p>
-          <p>{insightData.overview}</p>
+        <div className="row">
+          <div className="overview-container">
+            <h3>Overview</h3>
+            <p className="subtext">AI-generated</p>
+            <p>{insightData.overview}</p>
+          </div>
+
+          {churnRate && (
+            <div className="overview-container">
+              <h3>Business Health</h3>
+              <p style={{ marginTop: "12px" }}>
+                The current business health is{" "}
+                <span
+                  style={{
+                    color:
+                      churnRate < 20
+                        ? "green"
+                        : churnRate < 50
+                        ? "orange"
+                        : "red",
+                    fontWeight: "bold",
+                  }}>
+                  {churnRate < 20
+                    ? "Good"
+                    : churnRate < 50
+                    ? "Average"
+                    : "Bad"}
+                </span>
+                , based on the churn rate of {churnRate}%.
+              </p>
+            </div>
+          )}
         </div>
+
         {churnRate && (
           <div className="dashboard-card">
             <h3>Churn Rate</h3>

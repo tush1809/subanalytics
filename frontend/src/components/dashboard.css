@@ -7,9 +7,14 @@
   justify-content: center;
 }
 
-.overview-container {
+.row {
   grid-column: span 2; /* Spans across both columns */
   max-width: 100%;
+  display: flex;
+  gap: 20px;
+}
+
+.overview-container {
   background-color: #f0f0f0;
   padding: 30px;
   box-sizing: border-box;
