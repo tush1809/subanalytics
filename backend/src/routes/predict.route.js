@@ -1,12 +1,15 @@
 import express from "express";
 import multer from "multer";
-import { uploadFileAndPredict } from "../controllers/predict.controller.js";
+import { verifyUser } from "../middleware/auth.middleware.js";
+import { getLatestPrediction, uploadFileAndPredict } from "../controllers/predict.controller.js";
 
 const router = express.Router();
 
 // Configure Multer for file uploads
 const upload = multer({ dest: "uploads/" });
 
-router.post("/upload", upload.single("file"), uploadFileAndPredict);
+// Protected Routes
+router.post("/", verifyUser, upload.single("file"), uploadFileAndPredict);
+router.get("/get-latest", verifyUser, getLatestPrediction);
 
 export default router;

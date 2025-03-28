@@ -1,30 +1,33 @@
-import jwt from 'jsonwebtoken';
-import dotenv from 'dotenv';
+import jwt from "jsonwebtoken";
+import { User } from "../models/user.model.js";
 
-// Load environment variables from .env file
-dotenv.config();
+export const verifyUser = async (req, res, next) => {
+  // Retrieve the token from the cookie
+  const token = req.cookies?.accessToken;
 
-const authMiddleware = (req, res, next) => {
-    // Retrieve the token from the Authorization header
-    const token = req.header('Authorization')?.replace('Bearer ', '');
+  // If no token, return an error
+  if (!token) {
+    return res.status(401).json({ message: "Unauthorized request" });
+  }
 
-    // If no token, return an error
-    if (!token) {
-        return res.status(401).json({ message: 'No token, authorization denied' });
+  try {
+    // Verify the token with the secret key
+    const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
+
+    // Check if the user exists
+    const user = await User.findById(decodedToken?._id).select("-password");
+
+    // If user does not exist, return error
+    if (!user) {
+      return res.status(401).json({ message: "Invalid access token" });
     }
 
-    try {
-        // Verify the token with the secret key
-        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    // Attach the user object to the request
+    req.user = user;
 
-        // Attach the user data to the request object
-        req.user = decoded.user;
-
-        // Proceed to the next middleware or route handler
-        next();
-    } catch (error) {
-        return res.status(401).json({ message: 'Token is not valid' });
-    }
+    // Proceed to the next middleware or route handler
+    next();
+  } catch (error) {
+    return res.status(401).json({ message: "Access token is not valid" });
+  }
 };
-
-export default authMiddleware;
