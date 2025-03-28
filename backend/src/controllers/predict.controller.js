@@ -18,7 +18,7 @@ export const uploadFileAndPredict = async (req, res) => {
     });
 
     // Make request to Flask API
-    const predictionResult = await axios.post(
+    const flaskResult = await axios.post(
       "http://127.0.0.1:5001/api/predict",
       formData,
       {
@@ -30,16 +30,21 @@ export const uploadFileAndPredict = async (req, res) => {
     // Extract the current logged in user
     const user = req.user;
 
+    const predictionResult = flaskResult.data.prediction_results
+    const insightResult = flaskResult.data.insight_results
+
     // Create a prediction object
     const predictionObj = {
       user,
       inputFileName: req.file.originalname,
-      predictionResult: predictionResult.data,
+      predictionResult,
+      insightResult
     };
 
+
     // Save the prediction object to the database
-    // const newPrediction = new Prediction(predictionObj);
-    // await newPrediction.save();
+    const newPrediction = new Prediction(predictionObj);
+    await newPrediction.save();
 
     // Delete the uploaded file after processing
     fs.unlink(req.file.path, (err) => {
@@ -56,7 +61,7 @@ export const uploadFileAndPredict = async (req, res) => {
       .status(201)
       .json({
         message: "New prediction results added",
-        results: predictionResult.data,
+        results: predictionObj,
       });
   } catch (error) {
     console.error("Error communicating with Flask API:", error.message);
