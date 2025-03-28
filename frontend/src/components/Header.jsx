@@ -16,9 +16,9 @@ const Header = () => {
   return (
     <div className="header-wrapper">
       <h1 className="logo-title">
-        <Link to="/" className="logo-link">
+        {user ? (<Link to="/dashboard" className="logo-link">
           SubAnalytics
-        </Link>
+        </Link>) : "SubAnalytics"}
       </h1>
       <div className="nav-links">
         {user && (
