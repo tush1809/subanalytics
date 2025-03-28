@@ -4,7 +4,11 @@ import "./dashboard.css";
 import PlanDistributionChart from "./PlanDistributionChart";
 import AtRiskCustomersList from "./AtRiskCustomersList";
 
-const Dashboard = ({ churnRate, planDistribution, atRiskCustomers }) => {
+const Dashboard = ({ analyticsData, insightData }) => {
+  const churnRate = analyticsData.churn_rate;
+  const atRiskCustomers = analyticsData.top_3_customers_at_risk;
+  const planDistribution = analyticsData.subscription_plan_distribution;
+  
   return (
     <div className="dashboard">
       {churnRate && (

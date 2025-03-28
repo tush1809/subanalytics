@@ -5,8 +5,6 @@ import { useAuthContext } from "../hooks/useAuthContext.js";
 import { useLogout } from "../hooks/useLogout.js";
 
 const Header = () => {
-  const navigate = useNavigate();
-
   const { user } = useAuthContext();
   const { logout } = useLogout();
 
