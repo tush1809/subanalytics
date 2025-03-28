@@ -6,6 +6,7 @@ from datetime import datetime
 import os
 import pandas as pd
 import pickle
+import json
 
 load_dotenv()
 
@@ -181,6 +182,16 @@ def get_insights(prediction):
         - Provide 3 actionable recommendations to improve retention, optimize plan performance, and engage high-risk customers.
         - Suggest strategies for loyalty programs, re-engagement campaigns, or feature improvements.
 
+        - Return **only** a well-structured JSON object.
+        - **No markdown code blocks, text, or additional formatting.** 
+        - **No bullet points or numbered lists.**
+        - The output must be directly parsable by `json.loads()`.
+
+        Important:
+        - No explanations or text outside of the JSON object.
+        - Ensure the JSON is properly formatted for easy parsing. 
+
+
         ### Example Output Structure:
         {{
         "overview": "Summarize the key business health indicators in 2-3 sentences.",
@@ -189,6 +200,8 @@ def get_insights(prediction):
         "top_customers_at_risk_insights": ["Insight 1", "Insight 2", "Insight 3"],
         "business_recommendations": ["Recommendation 1", "Recommendation 2", "Recommendation 3"]
         }}
+
+        Return the output as a json object.
     """
 
     completion = client.chat.completions.create(
@@ -207,8 +220,16 @@ def get_insights(prediction):
 
     # print()
     # print(result)
-
-    return result
+    try:
+        # Remove any extraneous characters or formatting
+        cleaned_result = result.strip("```").strip()
+        
+        # Parse the cleaned result into a JSON object
+        json_result = json.loads(cleaned_result)
+        
+        return json_result
+    except json.JSONDecodeError as e:
+        print(f"Error parsing JSON: {e}")
 
 
 if __name__ == '__main__':
