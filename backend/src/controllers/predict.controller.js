@@ -68,3 +68,28 @@ export const uploadFileAndPredict = async (req, res) => {
     res.status(500).json({ message: "Error processing file" });
   }
 };
+
+export const getLatestPrediction = async (req, res) => {
+  try {
+    // Extract the current logged in user
+    const user = req.user;
+
+    // Find the latest prediction for the user
+    const latestPrediction = await Prediction.findOne({ user })
+      .sort({ createdAt: -1 }) // Sort by creation date in descending order
+      .exec();
+
+    if (!latestPrediction) {
+      return res.status(404).json({ message: "No predictions found for the user" });
+    }
+
+    // Send the latest prediction back to the frontend
+    res.status(200).json({
+      message: "Latest prediction retrieved successfully",
+      prediction: latestPrediction,
+    });
+  } catch (error) {
+    console.error("Error retrieving latest prediction:", error.message);
+    res.status(500).json({ message: "Error retrieving latest prediction" });
+  }
+}
