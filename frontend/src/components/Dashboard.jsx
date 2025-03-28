@@ -25,12 +25,12 @@ const Dashboard = ({ analyticsData, insightData }) => {
         )}
 
         {insightData.business_recommendations && (
-          <div className="recommendation-card">
+          <div className="dashboard-card">
             <div>
               <h3>Business Recommendations</h3>
               <p className="subtext">AI-generated</p>
             </div>
-            <div>
+            <div className="bullet-point-container">
               {insightData.business_recommendations.map((line, index) => (
                 <p key={index} className="bullet-point">
                   {line}
@@ -42,7 +42,7 @@ const Dashboard = ({ analyticsData, insightData }) => {
 
         {atRiskCustomers && (
           <div className="dashboard-card">
-            <h3>Top 3 customers at risk of churning</h3>
+            <h3>Top 3 customers at high risk of churning</h3>
             <AtRiskCustomersList atRiskCustomers={atRiskCustomers} />
           </div>
         )}
