@@ -16,14 +16,14 @@
     align-items: center;
     justify-content: center;
     min-height: 100vh;
-    background-color: #22222d;
+    background: linear-gradient(to bottom, #F5F5F5, #C0C0C0);
     width: 100vw;
     overflow-x: hidden;
   }
   
  
   .signup-box {
-    background: rgb(26, 21, 21);
+    background: rgb(165, 163, 163);
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -61,7 +61,7 @@
 
 .signup-button {
     width: 95%;
-    background-color: #28a745;
+    background-color: #676868;
     color: white;
     padding: 10px;
     border: none;
@@ -72,7 +72,7 @@
   }
   
   .signup-button:hover {
-    background-color: #218838;
+    background-color: #383938;
   }
   
   
@@ -83,7 +83,7 @@
   }
   
   .login-link {
-    color: #007bff;
+    color: #060606;
     text-decoration: none;
     font-weight: bold;
   }

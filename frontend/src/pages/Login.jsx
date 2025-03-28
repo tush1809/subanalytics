@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import Header from '../components/Header';
 import './Login.css';
+import MarqueeText from '../components/MarequeText';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -22,7 +23,9 @@ const Login = () => {
   return (
     <div>
       <Header />
+
       <div className="login-container">
+      <MarqueeText/>
         <div className="login-box">
           <h2>Login</h2>
           <form onSubmit={handleLogin}>

@@ -9,7 +9,7 @@
     max-width: 600px;
     margin: auto;
     padding: 15px;
-    background: #1a1a2e;
+    background: #a2a2a3;
     border-radius: 12px;
     margin-top: 15px;
     box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
@@ -25,7 +25,7 @@
   
   /* Upload button */
   .file-upload-container > button {
-    background: linear-gradient(135deg, #545487, #3d3d73);
+    background: linear-gradient(135deg, #040404, #3d3d73);
     border: none;
     border-radius: 8px;
     width: 140px;

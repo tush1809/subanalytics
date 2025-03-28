@@ -15,7 +15,7 @@ const SubscriptionPlanChart = ({ planDistribution }) => {
       {
         label: "Subscription plans",
         data: planDistribution ? Object.values(planDistribution) : [], // Counts for each subscription plan
-        backgroundColor: "#8884d8", // Color for bars
+        backgroundColor: "#4CAF50", // Color for bars
         borderColor: "#8884d8", // Border color
         borderWidth: 1,
       },

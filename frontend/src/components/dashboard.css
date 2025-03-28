@@ -8,7 +8,8 @@
   }
   
   .dashboard-card {
-    background: #22222d;
+    background: #e9e9eb;
+    color: black;
     border-radius: 8px;
     padding: 20px;
     display: flex;
@@ -20,7 +21,7 @@
   .dashboard-card h3 {
     font-size: 1.2rem;
     margin-bottom: 10px;
-    color: #dfdfdf;
+    color: #060606;
   }
   
   .dashboard-card .chart {

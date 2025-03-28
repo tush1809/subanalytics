@@ -5,7 +5,7 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #14141b;
+  background-color: #ffffff;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -17,4 +17,5 @@ body {
   margin: 0;
   padding: 0;
   overflow-x: hidden ;
+  overflow-y: hidden;
 }

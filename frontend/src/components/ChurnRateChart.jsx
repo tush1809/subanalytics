@@ -11,7 +11,7 @@ const ChurnRateChart = ({ churnRate }) => {
     datasets: [
       {
         data: [churnRate, 100 - churnRate], // Data for churned vs non-churned
-        backgroundColor: ['#FF5733', '#33FF57'], // Colors for the sections
+        backgroundColor: ['#E74C3C', '#4CAF50'], // Colors for the sections
         hoverBackgroundColor: ['#FF3D00', '#28B44C'], // Hover colors
       },
     ],

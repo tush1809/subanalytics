@@ -27,7 +27,7 @@
     margin-bottom: 6px;
     /* border: 1px solid #ddd; */
     border-radius: 8px;
-    background-color: #1e1e28;
+    background-color: #cacace;
   }
   
   .customer-name {
@@ -37,7 +37,7 @@
   }
   
   .churn-probability {
-    color: #888;
+    color: #0a0a0a;
   }
   
   .risk-level {
@@ -50,6 +50,6 @@
   }
   
   .medium-risk {
-    color: orange;
+    color: rgb(5, 5, 4);
   }
   
