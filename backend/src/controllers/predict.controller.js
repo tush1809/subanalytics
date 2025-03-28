@@ -38,8 +38,8 @@ export const uploadFileAndPredict = async (req, res) => {
     };
 
     // Save the prediction object to the database
-    const newPrediction = new Prediction(predictionObj);
-    await newPrediction.save();
+    // const newPrediction = new Prediction(predictionObj);
+    // await newPrediction.save();
 
     // Delete the uploaded file after processing
     fs.unlink(req.file.path, (err) => {
