@@ -93,3 +93,28 @@ export const getLatestPrediction = async (req, res) => {
     res.status(500).json({ message: "Error retrieving latest prediction" });
   }
 }
+
+export const getPredictionHistory = async (req, res) => {
+  try {
+    // Extract the current logged in user
+    const user = req.user;
+    // Find all predictions for the user
+    const history = await Prediction.find({ user })
+      .select("inputFileName createdAt") // Select only the filename and creation date
+      .sort({ createdAt: -1 }) // Sort by creation date in descending order
+      .exec();
+
+    if (!history || history.length === 0) {
+      return res.status(404).json({ message: "No prediction history found for the user" });
+    }
+
+    // Send the prediction history back to the frontend
+    res.status(200).json({
+      message: "Prediction history retrieved successfully",
+      history,
+    });
+  } catch (error) {
+    console.error("Error retrieving prediction history:", error.message);
+    res.status(500).json({ message: "Error retrieving prediction history" });
+  }
+}
