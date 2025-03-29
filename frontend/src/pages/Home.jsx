@@ -63,7 +63,7 @@ const Home = () => {
           </>
         ) : (
           !loading && (
-            <p>
+            <p className="message">
               No data to analyze. Upload your customer data to see analytics.
             </p>
           )
