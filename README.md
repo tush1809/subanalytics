@@ -2,6 +2,21 @@
 
 Subanalytics is a predictive analytics tool for SaaS businesses. It takes customer data from businesses in the form of CSV files and analyzes it to predict churn rate, identify the top-three customers with the highest churn probability, and show subscription plan distribution. It then generates actionable insights using a custom-built prediction model paired with NVIDIA’s LLaMA 3.1 Nemotron 70B Instruct language model to help reduce churn and improve business growth and customer retention.
 
+## Table of Contents
+
+- [Features](#-features)  
+- [Getting Started](#-getting-started)  
+  - [Prerequisites](#-prerequisites)  
+  - [Installation Steps](#-installation-steps)  
+    - [Backend Setup](#1-backend-setup)  
+    - [Frontend Setup](#3-frontend-setup)  
+    - [Flask Microservice Setup](#4-flask-microservice-setup)  
+- [Usage](#-usage)  
+- [Sample Data](#-sample-data)  
+- [Demo](#-demo)  
+- [Contributing](#-contributing)  
+- [Contact](#-contact)
+
 ---
 
 ## ✨ Features
