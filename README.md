@@ -8,7 +8,7 @@ Subanalytics is a predictive analytics tool for SaaS businesses. It takes custom
 - [Getting Started](#-getting-started)  
   - [Prerequisites](#-prerequisites)  
   - [Installation Steps](#-installation-steps)  
-    - [Backend Setup](#1-backend-setup)  
+    - [Backend Setup](#2-backend-setup)  
     - [Frontend Setup](#3-frontend-setup)  
     - [Flask Microservice Setup](#4-flask-microservice-setup)  
 - [Usage](#-usage)  
