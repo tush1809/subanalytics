@@ -27,20 +27,20 @@ const Dashboard = ({ analyticsData, insightData }) => {
                 <span
                   style={{
                     color:
-                      churnRate < 20
+                      churnRate < 15
                         ? "green"
-                        : churnRate < 50
+                        : churnRate < 30
                         ? "orange"
                         : "red",
                     fontWeight: "bold",
                   }}>
-                  {churnRate < 20
+                  {churnRate < 15
                     ? "Good"
-                    : churnRate < 50
+                    : churnRate < 30
                     ? "Average"
                     : "Bad"}
                 </span>
-                , based on the churn rate of {churnRate}%.
+                , based on the churn rate of {(churnRate).toFixed(2)}%.
               </p>
             </div>
           )}
@@ -49,7 +49,7 @@ const Dashboard = ({ analyticsData, insightData }) => {
         {churnRate && (
           <div className="dashboard-card">
             <h3>Churn Rate</h3>
-            <ChurnRateChart churnRate={churnRate} />
+            <ChurnRateChart churnRate={(churnRate).toFixed(2)} />
           </div>
         )}
 

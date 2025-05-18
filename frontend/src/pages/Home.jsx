@@ -5,6 +5,7 @@ import Header from "../components/Header";
 import FileUpload from "../components/FileUpload";
 import Dashboard from "../components/Dashboard";
 import "./Home.css";
+import { NavLink } from "react-router-dom";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -64,7 +65,7 @@ const Home = () => {
         ) : (
           !loading && (
             <p className="message">
-              No data to analyze. Upload your customer data to see analytics.
+              No data to analyze. <NavLink to="/datahub">Upload</NavLink> your customer data to see analytics.
             </p>
           )
         )}

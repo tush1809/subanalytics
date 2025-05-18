@@ -13,10 +13,11 @@ const FileUpload = () => {
     setError(null);
     setSuccess(null);
   };
-
+  
   const handleFileUpload = async () => {
     setLoading(true);
     setSuccess(null);
+    setError(null);
 
     const formData = new FormData();
     formData.append("file", file);
@@ -47,7 +48,7 @@ const FileUpload = () => {
         <p>Upload File :</p>
         <input
           type="file"
-          accept=".xlsx, .xls, .csv"
+          accept=".csv"
           onChange={handleFileChange}
           required
         />
