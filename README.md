@@ -150,13 +150,13 @@ To get started quickly or test the system, you can use the sample CSVs included 
 
 ## 📸 Demo
 
-### Dashboard  
-![Dashboard](screenshots/dashboard.png)  
-*View churn predictions, subscription plan distribution, and top at-risk customers.*
-
 ### Upload & Data Hub  
 ![Upload & Data Hub](screenshots/datahub.png)  
 *Upload customer CSV files and view previously uploaded datasets.*
+
+### Dashboard  
+![Dashboard](screenshots/dashboard.png)  
+*View churn predictions, subscription plan distribution, and top at-risk customers.*
 
 ---
 
