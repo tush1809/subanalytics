@@ -68,7 +68,7 @@ export const loginUser = async(req, res) => {
 export const logoutUser = async (_, res) => {
   return res
     .status(200)
-    .clearCookie("accessToken")
+    .clearCookie("accessToken", COOKIE_OPTIONS)
     .json({ message: "User logged out" });
 }
 
