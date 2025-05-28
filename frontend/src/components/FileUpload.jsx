@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import axios from "axios";
 import "./fileUpload.css";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 const FileUpload = () => {
   const [file, setFile] = useState(null);
   const [error, setError] = useState(null);
@@ -24,7 +26,7 @@ const FileUpload = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:8000/api/predict",
+        `${API_URL}/api/predict`,
         formData,
         {
           headers: {
