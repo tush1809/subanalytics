@@ -206,7 +206,10 @@ def get_insights(prediction):
 
     completion = client.chat.completions.create(
         model="nvidia/llama-3.1-nemotron-70b-instruct",
-        messages=[{"role":"user","content":insightsPrompt}],
+        messages=[
+            {"role": "system", "content": ""},
+            {"role": "user","content": insightsPrompt}
+        ],
         temperature=0.8,
         top_p=0.8,
         max_tokens=1024,
