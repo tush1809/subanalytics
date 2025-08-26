@@ -21,11 +21,10 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 NVIDIA_API_KEY = os.getenv("NVIDIA_API_KEY")
 # print(NVIDIA_API_KEY)
 
-# NVIDIA client
-client = OpenAI(
-  base_url = "https://integrate.api.nvidia.com/v1",
-  api_key = NVIDIA_API_KEY
-)
+# openAI client
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+client = OpenAI(api_key=OPENAI_API_KEY)
+
 
 # Load the trained model and encoders
 try:
@@ -205,7 +204,7 @@ def get_insights(prediction):
     """
 
     completion = client.chat.completions.create(
-        model="nvidia/llama-3.1-nemotron-70b-instruct",
+        model="gpt-4o-mini",
         messages=[
             {"role": "system", "content": ""},
             {"role": "user","content": insightsPrompt}
