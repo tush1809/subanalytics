@@ -1,3 +1,4 @@
+// src/context/AuthContext.jsx
 import { createContext, useReducer, useEffect } from "react";
 import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -13,67 +14,62 @@ export const actions = {
 
 export const authReducer = (state, action) => {
   switch (action.type) {
-    case actions.LOGIN:
+    case actions.LOGIN: {
+      const u = action.payload ?? null;
       return {
-        user: {
-          firstname: action.payload.firstname,
-          lastname: action.payload.lastname,
-          email: action.payload.email,
-        },
+        ...state,
+        user: u
+          ? {
+              firstname: u.firstname ?? "",
+              lastname: u.lastname ?? "",
+              email: u.email ?? "",
+            }
+          : null,
       };
-
+    }
     case actions.LOGOUT:
-      return { user: null };
-
+      return { ...state, user: null };
     default:
-      return state;
+      return state; // never return undefined
   }
 };
 
 export const AuthContextProvider = ({ children }) => {
+  // Safe initial state: user can be null; never undefined
   const [state, dispatch] = useReducer(authReducer, {
-    user: undefined,
+    user: null,
   });
 
   const navigate = useNavigate();
   const location = useLocation();
 
-  // Load user on initial load
   useEffect(() => {
     const loadUser = async () => {
       try {
         const response = await axios.get(`${API_URL}/api/auth/get-user`, {
           withCredentials: true,
         });
-
-        // if user exists, then save in context
-        console.log(response.data.user);
-        
-        dispatch({ type: actions.LOGIN, payload: response.data.user });
-
-        if (location.pathname === "/login") {
-          navigate("/dashboard"); // redirect to home page after login
+        const user = response?.data?.user ?? null;
+        if (user) {
+          dispatch({ type: actions.LOGIN, payload: user });
+          if (location.pathname === "/login") navigate("/dashboard");
+        } else {
+          dispatch({ type: actions.LOGOUT });
         }
       } catch (error) {
-        // logout if refresh token is expired or invalid
-        if (error.response.status === 401 || error.response.status === 404) {
+        const status = error?.response?.status;
+        if (status === 401 || status === 404) {
           dispatch({ type: actions.LOGOUT });
-          if (
-            location.pathname !== "/login" &&
-            location.pathname !== "/signup"
-          ) {
-            navigate("/login"); // Navigate to login only if not already there
+          if (location.pathname !== "/login" && location.pathname !== "/signup") {
+            navigate("/login");
           }
         } else {
-          console.log("An unexpected error occured. ", error);
+          console.log("An unexpected error occurred.", error);
         }
       }
     };
-
     loadUser();
-  }, []);
-
-  // console.log(state);
+  }, [API_URL, location.pathname, navigate]);
 
   return (
     <AuthContext.Provider value={{ ...state, dispatch }}>
